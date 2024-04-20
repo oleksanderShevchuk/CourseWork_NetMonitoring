@@ -1,0 +1,6 @@
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  ENU.c
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1392,5): warning MSB8012: TargetPath(C:\Users\oleks\source\repos\CourseWork_NetMonitoring\Debug\Lang_ENU.dll) does not match the Linker's OutputFile property value (C:\Users\oleks\source\repos\CourseWork_NetMonitoring\Debug\Lang\ENU.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1394,5): warning MSB8012: TargetName(Lang_ENU) does not match the Linker's OutputFile property value (ENU). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+ENU.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  Lang_ENU.vcxproj -> C:\Users\oleks\source\repos\CourseWork_NetMonitoring\Debug\Lang_ENU.dll
