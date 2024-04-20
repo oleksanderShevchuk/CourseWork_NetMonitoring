@@ -43,6 +43,9 @@
 *.su
 *.idb
 *.pdb
+*.build
+*.Debug
+Debug
 
 # Kernel Module Compile Results
 *.mod*
@@ -52,16 +55,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-# Remove Debug and Release
-Debug/*
-Release/*
-Netmon/Debug/*
-Netmon/Release/*
-RegUpdater/Debug/*
-RegUpdater/Release/*
-Lang/ENU/Debug/*
-Lang/ENU/Release/*
-*.user
-*.ncb
-*.suo

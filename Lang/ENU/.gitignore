@@ -1,0 +1,6 @@
+# Remove Debug and Release
+Debug/*
+Release/*
+*.user
+*.ncb
+*.suo
