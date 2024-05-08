@@ -1,1 +1,30 @@
-﻿  Netmon.vcxproj -> C:\Users\oleks\source\repos\CourseWork_NetMonitoring\Debug\Netmon.exe
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  stdafx.cpp
+cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  Utils.cpp
+  SingleLock.cpp
+  SQLite.cpp
+  ProfileItem.cpp
+  Profile.cpp
+  ProcessView.cpp
+  ProcessModel.cpp
+  ProcessCache.cpp
+  PortCache.cpp
+  Language.cpp
+  Date.cpp
+  VirtualSource.cpp
+  PcapSource.cpp
+  RealtimeView.cpp
+  RealtimeModel.cpp
+  Realtime.cpp
+  MonthView.cpp
+  MonthModel.cpp
+  Month.cpp
+  View.cpp
+  Generating Code...
+  Compiling...
+  Model.cpp
+  Main.cpp
+  DlgAbout.cpp
+  Generating Code...
+  Netmon.vcxproj -> C:\Users\oleks\source\repos\CourseWork_NetMonitoring\Debug\Netmon.exe
