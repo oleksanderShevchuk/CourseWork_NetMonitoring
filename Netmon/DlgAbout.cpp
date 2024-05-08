@@ -1,17 +1,3 @@
-// Copyright (C) 2012-2014 F32 (feng32tc@gmail.com)
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License version 3 as
-// published by the Free Software Foundation;
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
 
 #include "stdafx.h"
 #include "DlgAbout.h"
@@ -52,7 +38,7 @@ static void OnInitDialog(HWND hWnd, WPARAM wParam, LPARAM lParam)
     SetWindowPos(hWnd, HWND_TOP, 140, 140, 569, 320, 0);
 
     // Init the Read-only Edit Control
-    g_lpOldProcEdit = 
+    g_lpOldProcEdit =
         (WNDPROC)SetWindowLong(GetDlgItem(hWnd, IDE_THIRD_PARTY), GWL_WNDPROC, (LONG)MyProcEdit);
 
     // Get Client Rectangle
@@ -66,67 +52,58 @@ static void OnInitDialog(HWND hWnd, WPARAM wParam, LPARAM lParam)
     int y2 = stClientRect.bottom;
 
     // Move Controls
-    SetWindowPos(GetDlgItem(hWnd, IDE_THIRD_PARTY), 
-        HWND_TOP, x1 + 22, 100, x2 - x1 - 32, y2 - y1 - 144, 0);
-    SetWindowPos(GetDlgItem(hWnd, IDB_CLOSE), 
+    SetWindowPos(GetDlgItem(hWnd, IDE_THIRD_PARTY),
+        HWND_TOP, x1 + 22, 35, x2 - x1 - 32, y2 - y1 - 80, 0);
+    SetWindowPos(GetDlgItem(hWnd, IDB_CLOSE),
         HWND_TOP, x2 - 90, y2 - 34, 80, 24, 0);
 
     // Set Bitmap
-    SendMessage(GetDlgItem(hWnd, IDS_SIDEBAR), STM_SETIMAGE, 
+    SendMessage(GetDlgItem(hWnd, IDS_SIDEBAR), STM_SETIMAGE,
         IMAGE_BITMAP, (LPARAM)LoadBitmap(g_hInstance, MAKEINTRESOURCE(IDB_ABOUT_SIDEBAR)));
 
     // Set close button text
     SetDlgItemText(hWnd, IDB_CLOSE, Language::GetString(IDS_ABOUT_CLOSE));
 
     // Set Third Party Infomation
-    SetDlgItemText(hWnd, IDE_THIRD_PARTY, 
-        TEXT("This software includes SQLite \r\n")
+    SetDlgItemText(hWnd, IDE_THIRD_PARTY,
+        TEXT("   About Network Monitor Application\r\n")
         TEXT("\r\n")
-        TEXT("The WinPcap Library is covered by the following license:\r\n")
+        TEXT("   Version: 1.0\r\n")
+        TEXT("   Developer: \r\n")
         TEXT("\r\n")
-        TEXT("   Copyright (c) 1993, 1994, 1995, 1996, 1997\r\n")
-        TEXT("   The Regents of the University of California.\r\n")
-        TEXT("   All rights reserved.\r\n")
+        // Description
+        TEXT("   Description:\r\n")
+        TEXT("   Network Monitor is a powerful and convenient tool for\r\n")
+        TEXT("   network monitoring.With it, you can observe the state \r\n")
+        TEXT("   of your network in real - time, receive event \r\n")
+        TEXT("   notifications, and analyze traffic.\r\n")
         TEXT("\r\n")
-        TEXT("   Redistribution and use in source and binary forms, with\r\n")
-        TEXT("   or without modification, are permitted provided that the\r\n")
-        TEXT("   following conditions are met:\r\n")
+        // Key Features
+        TEXT("   Key Features:\r\n")
+        TEXT("   1. Real-Time Monitoring: Monitor your network's activity\r\n")
+        TEXT("   in real-time. Track data transfer speeds, connections, and\r\n")
+        TEXT("   other metrics.\r\n")
+        TEXT("   2. Event Notifications: Receive notifications about important\r\n")
+        TEXT("   events in your network, such as connection losses, attacks,\r\n")
+        TEXT("   or hardware failures.\r\n")
+        TEXT("   3. Traffic Analysis: Study your network traffic to identify\r\n")
+        TEXT("   bottlenecks, pinpoint resource overutilization, and detect\r\n")
+        TEXT("   anomalies.\r\n")
+        TEXT("   4. Customizable Configuration: Tailor the application to \r\n")
+        TEXT("   your needs by setting monitoring and notification parameters.\r\n")
+        TEXT("   \r\n")
+        // How to Use
+        TEXT("   How to Use:\r\n")
+        TEXT("   Simply download the application to your device, enable \r\n")
+        TEXT("   monitoring, and receive up-to-date information about your \r\n")
+        TEXT("   network anytime.\r\n")
+        TEXT("   \r\n")
+        // Support
+        TEXT("   Support:\r\n")
+        TEXT("   If you have any questions or suggestions regarding the\r\n")
+        TEXT("   Network Monitor application, please contact us.\r\n")
         TEXT("\r\n")
-        TEXT("   1. Redistributions of source code must retain the above \r\n")
-        TEXT("      copyright notice, this list of conditions and the \r\n")
-        TEXT("      following disclaimer.\r\n")
-        TEXT("\r\n")
-        TEXT("   2. Redistributions in binary form must reproduce the \r\n")
-        TEXT("      above copyright notice, this list of conditions and\r\n")
-        TEXT("      the following disclaimer in the documentation and/or\r\n")
-        TEXT("      other materials provided with the distribution.\r\n")
-        TEXT("\r\n")
-        TEXT("   3. All advertising materials mentioning features or use\r\n")
-        TEXT("      of this software must display the following \r\n")
-        TEXT("      acknowledgement:\r\n")
-        TEXT("      This product includes software developed by the\r\n")
-        TEXT("      Computer Systems Engineering Group at Lawrence \r\n")
-        TEXT("      Berkeley Laboratory.\r\n")
-        TEXT("\r\n")
-        TEXT("   4. Neither the name of the University nor of the \r\n")
-        TEXT("      Laboratory may be used to endorse or promote \r\n")
-        TEXT("      products derived from this software without specific\r\n")
-        TEXT("      prior written permission.\r\n")
-        TEXT("\r\n")
-        TEXT("   THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS\r\n")
-        TEXT("   ``AS IS'' AND ANY EXPRESS OR IMPLIEDWARRANTIES, \r\n")
-        TEXT("   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF\r\n")
-        TEXT("   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\r\n")
-        TEXT("   DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS\r\n")
-        TEXT("   BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\r\n")
-        TEXT("   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\r\n")
-        TEXT("   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\r\n")
-        TEXT("   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\r\n")
-        TEXT("   HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER\r\n")
-        TEXT("   IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING \r\n")
-        TEXT("   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE\r\n")
-        TEXT("   USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY\r\n")
-        TEXT("   OF SUCH DAMAGE.\r\n"));
+        TEXT("   Thank you for choosing Network Monitor!"));
 }
 
 static void OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
@@ -139,7 +116,7 @@ static void OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
     GetClientRect(hWnd, &stClientRect);
 
     int x1 = stClientRect.left + 143;
-    int y1 = stClientRect.top;
+    int y1 = stClientRect.top - 65;
     int x2 = stClientRect.right;
     int y2 = stClientRect.bottom;
 
@@ -163,25 +140,25 @@ static void OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
     // Draw Text
 
     // - Netmon 1.2.1
-    SetTextAlign(stPS.hdc, TA_LEFT | TA_BOTTOM);
-    SetTextColor(stPS.hdc, RGB(0x17, 0x14, 0xA3));
+    //SetTextAlign(stPS.hdc, TA_LEFT | TA_BOTTOM);
+    //SetTextColor(stPS.hdc, RGB(0x17, 0x14, 0xA3));
     hFontDefault = (HFONT) SelectObject(stPS.hdc, hFontTitle);
-    TextOut(stPS.hdc, x1 + 10, y1 + 24, szVersion, _tcslen(szVersion));
+    //TextOut(stPS.hdc, x1 + 10, y1 + 24, szVersion, _tcslen(szVersion));
 
     // - Line
-    MoveToEx(stPS.hdc, x1 + 10, y1 + 27, 0);
-    LineTo(stPS.hdc, x2 - 10, y1 + 27);
+    //MoveToEx(stPS.hdc, x1 + 10, y1 + 27, 0);
+    //LineTo(stPS.hdc, x2 - 10, y1 + 27);
 
     // - Copyright (C) ...
     // - All rights ...
-    SetTextAlign(stPS.hdc, TA_LEFT | TA_TOP);
-    SetTextColor(stPS.hdc, RGB(0x00, 0x00, 0x00));
-    SelectObject(stPS.hdc, hFontText);
+    //SetTextAlign(stPS.hdc, TA_LEFT | TA_TOP);
+    //SetTextColor(stPS.hdc, RGB(0x00, 0x00, 0x00));
+    //SelectObject(stPS.hdc, hFontText);
 
-    TextOut(stPS.hdc, x1 + 22, y1 + 34, Language::GetString(IDS_ABOUT_COPYRIGHT),  
-        _tcslen(Language::GetString(IDS_ABOUT_COPYRIGHT)));
-    TextOut(stPS.hdc, x1 + 22, y1 + 48, Language::GetString(IDS_ABOUT_ALL_RIGHTS), 
-        _tcslen(Language::GetString(IDS_ABOUT_ALL_RIGHTS)));
+    //TextOut(stPS.hdc, x1 + 22, y1 + 34, Language::GetString(IDS_ABOUT_COPYRIGHT),  
+      //  _tcslen(Language::GetString(IDS_ABOUT_COPYRIGHT)));
+    //TextOut(stPS.hdc, x1 + 22, y1 + 48, Language::GetString(IDS_ABOUT_ALL_RIGHTS), 
+      //  _tcslen(Language::GetString(IDS_ABOUT_ALL_RIGHTS)));
 
     // - Third parties
     SetTextAlign(stPS.hdc, TA_LEFT | TA_BOTTOM);
