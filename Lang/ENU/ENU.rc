@@ -57,7 +57,7 @@ STRINGTABLE
     IDS_ABOUT_NETMON              "Netmon %s"
     IDS_ABOUT_COPYRIGHT           "Copyright (C) 2011 - 2015 F32 <feng32@163.com>"
     IDS_ABOUT_ALL_RIGHTS          "All rights reserved"
-    IDS_ABOUT_THIRD_PARTIES       "Third Parties"
+    IDS_ABOUT_THIRD_PARTIES       "About"
     IDS_ABOUT_CLOSE               "Close"
 
     IDS_RTVIEW_TXRATE             "Tx Rate"

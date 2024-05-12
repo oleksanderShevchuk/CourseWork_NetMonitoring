@@ -66,14 +66,14 @@ static void OnInitDialog(HWND hWnd, WPARAM wParam, LPARAM lParam)
 
     // Set Third Party Infomation
     SetDlgItemText(hWnd, IDE_THIRD_PARTY,
-        TEXT("   About Network Monitor Application\r\n")
+        TEXT("   About Network Monitoring Application\r\n")
         TEXT("\r\n")
         TEXT("   Version: 1.0\r\n")
-        TEXT("   Developer: \r\n")
+        TEXT("   Developer: Shevchuk Oleksandr\r\n")//Oleg Vozniuk
         TEXT("\r\n")
         // Description
         TEXT("   Description:\r\n")
-        TEXT("   Network Monitor is a powerful and convenient tool for\r\n")
+        TEXT("   Network Monitoring is a powerful and convenient tool for\r\n")
         TEXT("   network monitoring.With it, you can observe the state \r\n")
         TEXT("   of your network in real - time, receive event \r\n")
         TEXT("   notifications, and analyze traffic.\r\n")
