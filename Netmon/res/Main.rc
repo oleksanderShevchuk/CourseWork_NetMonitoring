@@ -29,24 +29,24 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 IDB_PAGEUP_LT      BITMAP         ".\\PageUpLight.bmp"
 
 
-LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
-IDB_SIDEBAR        BITMAP         ".\\Sidebar.bmp"
+//LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+//IDB_SIDEBAR        BITMAP         ".\\Sidebar.bmp"
 
 
-LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
-IDB_START          BITMAP         ".\\start.bmp"
-
-
-LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
-IDB_START_HOVER    BITMAP         ".\\start-hover.bmp"
-
-
-LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
-IDB_STOP           BITMAP         ".\\stop.bmp"
-
-
-LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
-IDB_STOP_HOVER     BITMAP         ".\\stop-hover.bmp"
+//LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+//IDB_START          BITMAP         ".\\start.bmp"
+//
+//
+//LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+//IDB_START_HOVER    BITMAP         ".\\start-hover.bmp"
+//
+//
+//LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+//IDB_STOP           BITMAP         ".\\stop.bmp"
+//
+//
+//LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+//IDB_STOP_HOVER     BITMAP         ".\\stop-hover.bmp"
 
 
 

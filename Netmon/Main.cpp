@@ -20,8 +20,6 @@
 
 #include "plugins/realtime/Realtime.h"
 #include "plugins/month/Month.h"
-#include "plugins/statistics/Statistics.h"
-#include "plugins/detail/Detail.h"
 
 #define WM_USER_TRAY            (WM_USER + 1)
 #define WM_RECONNECT            (WM_USER + 2)
@@ -530,14 +528,14 @@ static void InitUI(HWND hWnd)
     // Init Sidebar GDI Objects
     hDc = GetDC(hWnd);
 
-    g_hDcSidebarBg = CreateCompatibleDC(hDc);
-    g_hDcSidebarBuf = CreateCompatibleDC(hDc);
+   /* g_hDcSidebarBg = CreateCompatibleDC(hDc);
+    g_hDcSidebarBuf = CreateCompatibleDC(hDc);*/
     
-    g_hBmpSidebarBg = LoadBitmap(g_hInstance, MAKEINTRESOURCE(IDB_SIDEBAR));
-    g_hBmpSidebarBuf = CreateCompatibleBitmap(hDc, 50, 2000); // 2000 pixels in height, 
-                                                              // which is supposed to be enough
-    SelectObject(g_hDcSidebarBg, g_hBmpSidebarBg);
-    SelectObject(g_hDcSidebarBuf, g_hBmpSidebarBuf);
+    //g_hBmpSidebarBg = LoadBitmap(g_hInstance, MAKEINTRESOURCE(IDB_SIDEBAR));
+    //g_hBmpSidebarBuf = CreateCompatibleBitmap(hDc, 50, 2000); // 2000 pixels in height, 
+    //                                                          // which is supposed to be enough
+    //SelectObject(g_hDcSidebarBg, g_hBmpSidebarBg);
+    //SelectObject(g_hDcSidebarBuf, g_hBmpSidebarBuf);
 
     g_hDcStart = CreateCompatibleDC(hDc);
     g_hDcStartHover = CreateCompatibleDC(hDc);
@@ -562,35 +560,35 @@ static void InitUI(HWND hWnd)
     ReleaseDC(hWnd, hDc);
 }
 
-static void DrawSidebar()
-{
-    HDC hDcSidebar = GetDC(g_hDlgMain);
-
-    // Paint to buffer
-    Rectangle(g_hDcSidebarBuf, 0, 0, g_iSidebarWidth, g_iSidebarHeight + 1);
-    BitBlt(g_hDcSidebarBuf, 0, g_iSidebarHeight - 446, 50, 446, g_hDcSidebarBg, 0, 0, SRCCOPY);
-
-    if (!g_bCapture && g_enumHoverState == Start)
-    {
-        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 60, 18, 18, g_hDcStartHover, 0, 0, SRCCOPY);
-        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 33, 18, 18, g_hDcStop, 0, 0, SRCCOPY);
-    }
-    else if (g_bCapture && g_enumHoverState == Stop)
-    {
-        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 60, 18, 18, g_hDcStart, 0, 0, SRCCOPY);
-        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 33, 18, 18, g_hDcStopHover, 0, 0, SRCCOPY);
-    }
-    else
-    {
-        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 60, 18, 18, g_hDcStart, 0, 0, SRCCOPY);
-        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 33, 18, 18, g_hDcStop, 0, 0, SRCCOPY);
-    }
-
-    // Write to screen
-    BitBlt(hDcSidebar, 0, 0, g_iSidebarWidth, g_iSidebarHeight + 1, g_hDcSidebarBuf, 0, 0, SRCCOPY);
-
-    ReleaseDC(g_hDlgMain, hDcSidebar);
-}
+//static void DrawSidebar()
+//{
+//    HDC hDcSidebar = GetDC(g_hDlgMain);
+//
+//    // Paint to buffer
+//    Rectangle(g_hDcSidebarBuf, 0, 0, g_iSidebarWidth, g_iSidebarHeight + 1);
+//    BitBlt(g_hDcSidebarBuf, 0, g_iSidebarHeight - 446, 50, 446, g_hDcSidebarBg, 0, 0, SRCCOPY);
+//
+//    if (!g_bCapture && g_enumHoverState == Start)
+//    {
+//        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 60, 18, 18, g_hDcStartHover, 0, 0, SRCCOPY);
+//        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 33, 18, 18, g_hDcStop, 0, 0, SRCCOPY);
+//    }
+//    else if (g_bCapture && g_enumHoverState == Stop)
+//    {
+//        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 60, 18, 18, g_hDcStart, 0, 0, SRCCOPY);
+//        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 33, 18, 18, g_hDcStopHover, 0, 0, SRCCOPY);
+//    }
+//    else
+//    {
+//        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 60, 18, 18, g_hDcStart, 0, 0, SRCCOPY);
+//        BitBlt(g_hDcSidebarBuf, 15, g_iSidebarHeight - 33, 18, 18, g_hDcStop, 0, 0, SRCCOPY);
+//    }
+//
+//    // Write to screen
+//    BitBlt(hDcSidebar, 0, 0, g_iSidebarWidth, g_iSidebarHeight + 1, g_hDcSidebarBuf, 0, 0, SRCCOPY);
+//
+//    ReleaseDC(g_hDlgMain, hDcSidebar);
+//}
 
 static void EnumDevices()
 {
@@ -1325,15 +1323,15 @@ static void OnRestart(HWND hWnd, WPARAM wParam, LPARAM lParam)
     Exit(hWnd, true);
 }
 
-static void OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
-{
-    PAINTSTRUCT stPS;
-    BeginPaint(hWnd, &stPS);
-
-    DrawSidebar();
-
-    EndPaint(hWnd, &stPS);
-}
+//static void OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
+//{
+//    PAINTSTRUCT stPS;
+//    BeginPaint(hWnd, &stPS);
+//
+//   /* DrawSidebar();*/
+//
+//    EndPaint(hWnd, &stPS);
+//}
 
 static void OnSize(HWND hWnd, WPARAM wParam, LPARAM lParam)
 {
@@ -1383,13 +1381,13 @@ static void OnSize(HWND hWnd, WPARAM wParam, LPARAM lParam)
     if (firstRun)
     {
         MoveWindow(GetDlgItem(hWnd, IDL_PROCESS),
-            50 - 1, 0,
-            clientWidth - 50 + 2,
+            0 - 1, 0,
+            clientWidth - 0 + 2,
             138,
             TRUE);
         MoveWindow(GetDlgItem(hWnd, IDT_VIEW), 
-            50 + 6, 138 + 6,
-            clientWidth - 50 - 12,
+            0 + 6, 138 + 6,
+            clientWidth - 0 - 12,
             clientHeight - 138 - 12,
             TRUE);
 
@@ -1400,15 +1398,15 @@ static void OnSize(HWND hWnd, WPARAM wParam, LPARAM lParam)
     {
         // Resize
         MoveWindow(GetDlgItem(hWnd, IDL_PROCESS), 
-            50 - 1, 
+            1, 
             0,
-            clientWidth - 50 + 2,
+            clientWidth - 2,
             clientHeight - prevViewHeight - 12,
             TRUE);
         MoveWindow(GetDlgItem(hWnd, IDT_VIEW),
-            50 + 6,
+            6,
             clientHeight - prevViewHeight - 6,
-            clientWidth - 50 - 12,
+            clientWidth - 12,
             prevViewHeight,
             TRUE);
 
@@ -1416,14 +1414,14 @@ static void OnSize(HWND hWnd, WPARAM wParam, LPARAM lParam)
         prevViewHeight = prevViewHeight;
     }
 
-    g_iSidebarWidth = 50;
-    g_iSidebarHeight = clientHeight;
+   /* g_iSidebarWidth = 50;*/
+  /*  g_iSidebarHeight = clientHeight;*/
 
     // Resize the Child Window in Tab Control
     ResizeChildWindow(hWnd);
 
     // Draw Sidebar
-    DrawSidebar();
+ /*   DrawSidebar();*/
 }
 
 static void OnGetMinMaxInfo(HWND hWnd, WPARAM wParam, LPARAM lParam)
@@ -1489,21 +1487,21 @@ static void OnMouseMove(HWND hWnd, WPARAM wParam, LPARAM lParam)
         }
     }
 
-    // Update Sidebar when necessary
-    if (g_nAdapters > 0)
-    {
-        if (g_enumHoverState != newState)
-        {
-            g_enumHoverState = newState;
-            DrawSidebar();
-        }
-    }
+    //// Update Sidebar when necessary
+    //if (g_nAdapters > 0)
+    //{
+    //    if (g_enumHoverState != newState)
+    //    {
+    //        g_enumHoverState = newState;
+    //        DrawSidebar();
+    //    }
+    //}
 
     // Update Cursor
     RECT stListRect;
     GetWindowRect(GetDlgItem(hWnd, IDL_PROCESS), &stListRect);
 
-    if (x > 50 && 
+    if (x > 0 && 
         y > stListRect.bottom - stListRect.top && 
         y < stListRect.bottom - stListRect.top + 10)
     {
@@ -1529,15 +1527,15 @@ static void OnMouseMove(HWND hWnd, WPARAM wParam, LPARAM lParam)
         int tabHeight = clientHeight - listHeight - 12;
 
         MoveWindow(GetDlgItem(hWnd, IDL_PROCESS), 
-            50 - 1, 
+            1, 
             0, 
-            clientWidth - 50 + 2, 
+            clientWidth - 2, 
             listHeight, 
             TRUE);
         MoveWindow(GetDlgItem(hWnd, IDT_VIEW), 
-            50 + 6, 
+            6, 
             listHeight + 6, 
-            clientWidth - 50 - 12, 
+            clientWidth - 12, 
             tabHeight, 
             TRUE);
 
@@ -1558,71 +1556,53 @@ static void OnMouseMove(HWND hWnd, WPARAM wParam, LPARAM lParam)
     }
 }
 
-static void OnLButtonDown(HWND hWnd, WPARAM wParam, LPARAM lParam)
-{
-    // Get Mouse Position
-    int x = GET_X_LPARAM(lParam); 
-    int y = GET_Y_LPARAM(lParam); 
+//static void OnLButtonDown(HWND hWnd, WPARAM wParam, LPARAM lParam)
+//{
+//    // Get Mouse Position
+//    int x = GET_X_LPARAM(lParam); 
+//    int y = GET_Y_LPARAM(lParam); 
+//
+//    enum enumHoverState newState = Neither;
+//    if (x >= 15 && x < 33)
+//    {
+//        if (y >= g_iSidebarHeight - 60 && y < g_iSidebarHeight - 42)
+//        {
+//            newState = Start;
+//        }
+//        else if (y >= g_iSidebarHeight - 33 && y < g_iSidebarHeight - 15)
+//        {
+//            newState = Stop;
+//        }
+//    }
+//
+//    if (g_nAdapters == 0)
+//        return;
+//
+//    // Drag Start
+//    RECT stListRect;
+//    GetWindowRect(GetDlgItem(hWnd, IDL_PROCESS), &stListRect);
+//
+//    if (x > 0 && 
+//        y > stListRect.bottom - stListRect.top && 
+//        y < stListRect.bottom - stListRect.top + 10)
+//    {
+//        g_bDragging = true;
+//        SetCapture(hWnd);
+//    }
+//}
 
-    enum enumHoverState newState = Neither;
-    if (x >= 15 && x < 33)
-    {
-        if (y >= g_iSidebarHeight - 60 && y < g_iSidebarHeight - 42)
-        {
-            newState = Start;
-        }
-        else if (y >= g_iSidebarHeight - 33 && y < g_iSidebarHeight - 15)
-        {
-            newState = Stop;
-        }
-    }
-
-    if (g_nAdapters == 0)
-        return;
-
-    // Start / Stop when necessary
-    if (newState == Start)
-    {
-        if (g_bCapture == false)
-        {
-            OnCapture(hWnd);
-            DrawSidebar();
-        }
-    }
-    else if(newState == Stop)
-    {
-        if (g_bCapture == true)
-        {
-            OnStop(hWnd);
-            DrawSidebar();
-        }
-    }
-
-    // Drag Start
-    RECT stListRect;
-    GetWindowRect(GetDlgItem(hWnd, IDL_PROCESS), &stListRect);
-
-    if (x > 50 && 
-        y > stListRect.bottom - stListRect.top && 
-        y < stListRect.bottom - stListRect.top + 10)
-    {
-        g_bDragging = true;
-        SetCapture(hWnd);
-    }
-}
-
-static void OnLButtonUp(HWND hWnd, WPARAM wParam, LPARAM lParam)
-{
-    // Get Mouse Position
-    int x = GET_X_LPARAM(lParam); 
-    int y = GET_Y_LPARAM(lParam); 
-
-    if (g_bDragging)
-    {
-        g_bDragging = false;
-        ReleaseCapture();
-    }
-}
+//static void OnLButtonUp(HWND hWnd, WPARAM wParam, LPARAM lParam)
+//{
+//    // Get Mouse Position
+//    int x = GET_X_LPARAM(lParam); 
+//    int y = GET_Y_LPARAM(lParam); 
+//
+//    if (g_bDragging)
+//    {
+//        g_bDragging = false;
+//        ReleaseCapture();
+//    }
+//}
 
 ///----------------------------------------------------------------------------------------------//
 ///                                    Main Dialog Proc                                          //
@@ -1631,9 +1611,9 @@ static INT_PTR CALLBACK ProcDlgMain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM 
 {
 #define PROCESS_MSG(MSG, HANDLER) if(uMsg == MSG) { HANDLER(hWnd, wParam, lParam); return TRUE; }
 
-    PROCESS_MSG(WM_MOUSEMOVE,            OnMouseMove)
-    PROCESS_MSG(WM_LBUTTONDOWN,          OnLButtonDown)
-    PROCESS_MSG(WM_LBUTTONUP,            OnLButtonUp)
+  /*  PROCESS_MSG(WM_MOUSEMOVE,            OnMouseMove)*/
+    /*PROCESS_MSG(WM_LBUTTONDOWN,          OnLButtonDown)
+    PROCESS_MSG(WM_LBUTTONUP,            OnLButtonUp)*/
     PROCESS_MSG(WM_INITDIALOG,           OnInitDialog)      // Init
     PROCESS_MSG(WM_CLOSE,                OnClose)
     PROCESS_MSG(WM_QUERYENDSESSION,      OnQueryEndSession)
@@ -1641,7 +1621,7 @@ static INT_PTR CALLBACK ProcDlgMain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM 
     PROCESS_MSG(WM_COMMAND,              OnCommand)
     PROCESS_MSG(WM_USER_TRAY,            OnUserTray)        // Tray icon messages
     PROCESS_MSG(WM_RECONNECT,            OnReconnect)       // Resume from hibernation
-    PROCESS_MSG(WM_PAINT,                OnPaint)
+   /* PROCESS_MSG(WM_PAINT,                OnPaint)*/
     PROCESS_MSG(WM_SIZE,                 OnSize)            // Resize controls
     PROCESS_MSG(WM_GETMINMAXINFO,        OnGetMinMaxInfo)   // Set Window's minimun size
     PROCESS_MSG(WM_NOTIFY,               OnNotify)
@@ -1664,31 +1644,7 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdS
 
     // Single Instance (Create a Named-Pipe)
     HANDLE hPipe = 0;
-    //deleted by Oleh
-    //// Option "-s" (silent mode)
-    //if (strcmp(lpCmdLine, "-s") == 0) // Wait until the pipe is available
-    //{
-    //    do
-    //    {
-    //        Sleep(100);
-    //        hPipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\netmon"), 
-    //            PIPE_ACCESS_DUPLEX | FILE_FLAG_FIRST_PIPE_INSTANCE, 0, 4, 1024, 1024, 1000, NULL);
-    //    }
-    //    while (hPipe == INVALID_HANDLE_VALUE);
-    //}
-    //else // Normal mode: prompt user and exit
-    //{
-        hPipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\netmon"), 
-            PIPE_ACCESS_DUPLEX | FILE_FLAG_FIRST_PIPE_INSTANCE, 0, 4, 1024, 1024, 1000, NULL);
-
-        if (hPipe == INVALID_HANDLE_VALUE)
-        {
-            MessageBox(0, TEXT("Netmon is still running.\nOnly one instance is allowed for Netmon!"), 
-                TEXT("Error"), MB_OK | MB_ICONWARNING);
-            return 1;
-        }
- /*   }*/
-
+    
     // Load languages
     g_nLanguage = Language::Load();
     if (g_nLanguage == 0 )
@@ -1712,13 +1668,6 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdS
         }
         Language::Select(g_iCurLanguage);
     }
-    //deleted by Oleh
-    //// Option "-h"
-    //if (strcmp(lpCmdLine, "-h") == 0)
-    //{
-    //    g_bHideWindow = true;
-    //}
-
     // Display the window
     CreateDialogParam(g_hInstance, TEXT("DLG_MAIN"), NULL, ProcDlgMain, 0);
 
